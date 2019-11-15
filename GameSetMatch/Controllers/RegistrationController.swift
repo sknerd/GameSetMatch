@@ -26,32 +26,45 @@ class RegistrationController: UIViewController {
     let fullNameTextField: CustomTextField = {
         let tf = CustomTextField(padding: 16)
         tf.placeholder = "Enter full name"
-        tf.backgroundColor = .white
+        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
     
     let emailTextField: CustomTextField = {
         let tf = CustomTextField(padding: 16)
         tf.placeholder = "Enter email"
-        tf.backgroundColor = .white
         tf.keyboardType = .emailAddress
+        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
     
     let passwordTextField: CustomTextField = {
         let tf = CustomTextField(padding: 16)
         tf.placeholder = "Enter password"
-        tf.backgroundColor = .white
         tf.isSecureTextEntry = true
+        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
     
-    let registrationButton: UIButton = {
+    @objc fileprivate func handleTextChange(textField: UITextField) {
+        if textField == fullNameTextField {
+            registationViewModel.fullName = textField.text
+        } else if textField == emailTextField {
+            registationViewModel.email = textField.text
+        } else {
+            registationViewModel.password = textField.text
+        }
+    }
+    
+    let registerButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Register", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
-        button.backgroundColor = #colorLiteral(red: 0.8097158074, green: 0.1023196951, blue: 0.3286570013, alpha: 1)
+        //        button.backgroundColor = #colorLiteral(red: 0.8097158074, green: 0.1023196951, blue: 0.3286570013, alpha: 1)
+        button.backgroundColor = .lightGray
+        button.setTitleColor(.darkGray, for: .disabled)
+        button.isEnabled = false
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         button.layer.cornerRadius = 22
         return button
@@ -63,11 +76,28 @@ class RegistrationController: UIViewController {
         setupGradientLayer()
         setupLayout()
         setupNotificationObservers()
-        
         setupTapGesture()
+        setupRegistrationViewModelObserver()
     }
     
     // MARK:- Private
+    
+    let registationViewModel = RegistrationViewModel()
+    
+    fileprivate func setupRegistrationViewModelObserver() {
+        registationViewModel.isformValidObserver = { [weak self] (isFormValid) in
+            print("Form is changing, is it valid?", isFormValid)
+            
+            self?.registerButton.isEnabled = isFormValid
+            if isFormValid {
+                self?.registerButton.backgroundColor = #colorLiteral(red: 0.8097158074, green: 0.1023196951, blue: 0.3286570013, alpha: 1)
+                self?.registerButton.setTitleColor(.white, for: .normal)
+            } else {
+                self?.registerButton.backgroundColor = .lightGray
+                self?.registerButton.setTitleColor(.darkGray, for: .normal)
+            }
+        }
+    }
     
     fileprivate func setupTapGesture() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
@@ -100,33 +130,57 @@ class RegistrationController: UIViewController {
         let keyboardFrame = value.cgRectValue
         print(keyboardFrame)
         
-        let bottomSpace = view.frame.height - stackView.frame.origin.y - stackView.frame.height
+        let bottomSpace = view.frame.height - overallStackView.frame.origin.y - overallStackView.frame.height
         print(bottomSpace)
         
         let difference = keyboardFrame.height - bottomSpace
         self.view.transform = CGAffineTransform(translationX: 0, y: -difference - 8)
-        
-        
     }
     
-    lazy var stackView = UIStackView(arrangedSubviews: [
+    lazy var verticalStackView: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [
+            fullNameTextField,
+            emailTextField,
+            passwordTextField,
+            registerButton
+        ])
+        sv.axis = .vertical
+        sv.distribution = .fillEqually
+        sv.spacing = 8
+        return sv
+    }()
+    
+    lazy var overallStackView = UIStackView(arrangedSubviews: [
         selectPhotoButton,
-        fullNameTextField,
-        emailTextField,
-        passwordTextField,
-        registrationButton
+        verticalStackView
     ])
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if self.traitCollection.verticalSizeClass == .compact {
+            overallStackView.axis = .horizontal
+        } else {
+            overallStackView.axis = .vertical
+        }
+    }
+    
     fileprivate func setupLayout() {
-        view.addSubview(stackView)
-        stackView.axis = .vertical
-        stackView.spacing = 8
-        stackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
-        stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        view.addSubview(overallStackView)
+        
+        overallStackView.axis = .vertical
+        selectPhotoButton.widthAnchor.constraint(lessThanOrEqualToConstant: 275).isActive = true
+        overallStackView.spacing = 8
+        overallStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
+        overallStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
+    let gradientLayer = CAGradientLayer()
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        gradientLayer.frame = view.bounds
     }
     
     fileprivate func setupGradientLayer() {
-        let gradientLayer = CAGradientLayer()
         let topColor = #colorLiteral(red: 0.9921568627, green: 0.3568627451, blue: 0.3725490196, alpha: 1)
         let bottomColor = #colorLiteral(red: 0.8980392157, green: 0, blue: 0.4470588235, alpha: 1)
         // Have to use .cgColor in gradient params
