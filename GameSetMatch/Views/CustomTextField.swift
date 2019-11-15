@@ -18,6 +18,7 @@ class CustomTextField: UITextField {
         super.init(frame: .zero)
         backgroundColor = .white
         layer.cornerRadius = 22
+        self.autocapitalizationType = .none
     }
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.insetBy(dx: padding, dy: 0)
