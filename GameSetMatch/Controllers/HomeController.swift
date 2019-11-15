@@ -37,6 +37,9 @@ class HomeController: UIViewController {
     
     @objc func handleSetting() {
         print("Show registration page")
+        let registrationController = RegistrationController()
+        registrationController.modalPresentationStyle = .fullScreen
+        present(registrationController, animated: true)
     }
     
     fileprivate func setupDummyCards() {
