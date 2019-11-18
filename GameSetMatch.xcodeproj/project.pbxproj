@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0FBF51818656A36938F70067 /* Pods_GameSetMatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDAB33CC88ED83FFB203AA87 /* Pods_GameSetMatch.framework */; };
 		8120C951237D543D009F8D91 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C950237D543D009F8D91 /* CardViewModel.swift */; };
+		8140A1A92381942700C7DE8A /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8140A1A82381942700C7DE8A /* Bindable.swift */; };
 		818D7725237BF5230070D1FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818D7724237BF5230070D1FC /* AppDelegate.swift */; };
 		818D7727237BF5230070D1FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818D7726237BF5230070D1FC /* SceneDelegate.swift */; };
 		818D7729237BF5230070D1FC /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818D7728237BF5230070D1FC /* HomeController.swift */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		7A4FCA45D21EDAE0A52F25D9 /* Pods-GameSetMatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameSetMatch.debug.xcconfig"; path = "Target Support Files/Pods-GameSetMatch/Pods-GameSetMatch.debug.xcconfig"; sourceTree = "<group>"; };
 		8120C950237D543D009F8D91 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		8140A1A82381942700C7DE8A /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		818D7721237BF5230070D1FC /* GameSetMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameSetMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818D7724237BF5230070D1FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		818D7726237BF5230070D1FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				818D7728237BF5230070D1FC /* HomeController.swift */,
 				81B83F9E237D9D0C008A7663 /* RegistrationController.swift */,
 				81A81D51237ED3CB009966ED /* RegistrationViewModel.swift */,
+				8140A1A82381942700C7DE8A /* Bindable.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				818D7744237C344B0070D1FC /* User.swift in Sources */,
 				81B83F9F237D9D0C008A7663 /* RegistrationController.swift in Sources */,
 				818D773F237C07DA0070D1FC /* TopNavigationStackView.swift in Sources */,
+				8140A1A92381942700C7DE8A /* Bindable.swift in Sources */,
 				81A81D50237EB497009966ED /* CustomTextField.swift in Sources */,
 				81A81D52237ED3CB009966ED /* RegistrationViewModel.swift in Sources */,
 				818D773A237BF7130070D1FC /* Extensions+UIView.swift in Sources */,

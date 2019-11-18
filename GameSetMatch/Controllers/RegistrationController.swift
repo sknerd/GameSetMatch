@@ -10,6 +10,20 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
+extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as? UIImage
+        registationViewModel.bindableImage.value = image
+        //        registationViewModel.image = image
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+}
+
 class RegistrationController: UIViewController {
     
     // UI Components
@@ -22,8 +36,17 @@ class RegistrationController: UIViewController {
         button.setTitleColor(.black, for: .normal)
         button.heightAnchor.constraint(equalToConstant: 275).isActive = true
         button.layer.cornerRadius = 16
+        button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
+        button.imageView?.contentMode = .scaleAspectFill
+        button.clipsToBounds = true
         return button
     }()
+    
+    @objc func handleSelectPhoto() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true)
+    }
     
     let fullNameTextField: CustomTextField = {
         let tf = CustomTextField(padding: 16)
@@ -63,7 +86,6 @@ class RegistrationController: UIViewController {
         button.setTitle("Register", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
-        //        button.backgroundColor = #colorLiteral(red: 0.8097158074, green: 0.1023196951, blue: 0.3286570013, alpha: 1)
         button.backgroundColor = .lightGray
         button.setTitleColor(.darkGray, for: .disabled)
         button.isEnabled = false
@@ -73,24 +95,21 @@ class RegistrationController: UIViewController {
         return button
     }()
     
+    let registeringHUD = JGProgressHUD(style: .dark)
+    
     @objc fileprivate func handleRegister() {
         self.handleTapDismiss()
-        print("Register our user in Firebase Auth")
-        guard let email = emailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
-        
-        Auth.auth().createUser(withEmail: email, password: password) { (res, err) in
-            
+        registationViewModel.performRegistration { [weak self] (err) in
             if let err = err {
-                print(err)
-                self.showHUDWithError(error: err)
+                self?.showHUDWithError(error: err)
                 return
             }
-            print("Sucessfully registered user:", res?.user.uid ?? "")
+            print("Finished registering our user")
         }
     }
     
     fileprivate func showHUDWithError(error: Error) {
+        registeringHUD.dismiss()
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Failed refistration"
         hud.detailTextLabel.text = error.localizedDescription
@@ -113,9 +132,9 @@ class RegistrationController: UIViewController {
     let registationViewModel = RegistrationViewModel()
     
     fileprivate func setupRegistrationViewModelObserver() {
-        registationViewModel.isformValidObserver = { [weak self] (isFormValid) in
-            print("Form is changing, is it valid?", isFormValid)
-            
+        
+        registationViewModel.bindableIsFormValid.bind { [weak self] (isFormValid) in
+            guard let isFormValid = isFormValid else { return }
             self?.registerButton.isEnabled = isFormValid
             if isFormValid {
                 self?.registerButton.backgroundColor = #colorLiteral(red: 0.8097158074, green: 0.1023196951, blue: 0.3286570013, alpha: 1)
@@ -123,6 +142,17 @@ class RegistrationController: UIViewController {
             } else {
                 self?.registerButton.backgroundColor = .lightGray
                 self?.registerButton.setTitleColor(.darkGray, for: .normal)
+            }
+        }
+        registationViewModel.bindableImage.bind { [weak self] (img) in
+            self?.selectPhotoButton.setImage(img?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        registationViewModel.bindableisRegistering.bind { [unowned self] (isRegistering) in
+            if isRegistering == true {
+                self.registeringHUD.textLabel.text = "Register"
+                self.registeringHUD.show(in: self.view)
+            } else {
+                self.registeringHUD.dismiss()
             }
         }
     }
