@@ -10,21 +10,27 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
+protocol RegistrationControllerDelegate {
+    func didFinishRegistration()
+}
+
 extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as? UIImage
         registationViewModel.bindableImage.value = image
-        //        registationViewModel.image = image
         dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
     }
+
 }
 
 class RegistrationController: UIViewController {
+    
+    var delegate: RegistrationControllerDelegate?
     
     // UI Components
     
@@ -49,14 +55,14 @@ class RegistrationController: UIViewController {
     }
     
     let fullNameTextField: CustomTextField = {
-        let tf = CustomTextField(padding: 16)
+        let tf = CustomTextField(padding: 24, height: 44)
         tf.placeholder = "Enter full name"
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
     
     let emailTextField: CustomTextField = {
-        let tf = CustomTextField(padding: 16)
+        let tf = CustomTextField(padding: 24, height: 44)
         tf.placeholder = "Enter email"
         tf.keyboardType = .emailAddress
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
@@ -64,7 +70,7 @@ class RegistrationController: UIViewController {
     }()
     
     let passwordTextField: CustomTextField = {
-        let tf = CustomTextField(padding: 16)
+        let tf = CustomTextField(padding: 24, height: 44)
         tf.placeholder = "Enter password"
         tf.isSecureTextEntry = true
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
@@ -105,6 +111,9 @@ class RegistrationController: UIViewController {
                 return
             }
             print("Finished registering our user")
+            self?.dismiss(animated: true) {
+                self?.delegate?.didFinishRegistration()
+            }
         }
     }
     
@@ -221,7 +230,22 @@ class RegistrationController: UIViewController {
         }
     }
     
+    let goToLoginButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Go to Login", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        button.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc fileprivate func handleGoToLogin() {
+        let loginController = LoginController()
+        navigationController?.pushViewController(loginController, animated: true)
+    }
+    
     fileprivate func setupLayout() {
+        navigationController?.isNavigationBarHidden = true
         view.addSubview(overallStackView)
         
         overallStackView.axis = .vertical
@@ -229,6 +253,9 @@ class RegistrationController: UIViewController {
         overallStackView.spacing = 8
         overallStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
         overallStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        view.addSubview(goToLoginButton)
+        goToLoginButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
     
     let gradientLayer = CAGradientLayer()

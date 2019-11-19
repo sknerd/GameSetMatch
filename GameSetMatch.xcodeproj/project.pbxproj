@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0FBF51818656A36938F70067 /* Pods_GameSetMatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDAB33CC88ED83FFB203AA87 /* Pods_GameSetMatch.framework */; };
+		811327162383FB0700AF5F88 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811327142383FB0700AF5F88 /* LoginViewModel.swift */; };
+		811327172383FB0700AF5F88 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811327152383FB0700AF5F88 /* LoginController.swift */; };
+		8113271A23841FB700AF5F88 /* UserDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8113271923841FB700AF5F88 /* UserDetailsController.swift */; };
+		8114AA852382AC8C006724B0 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8114AA842382AC8C006724B0 /* SettingsController.swift */; };
+		8114AA872382BDE5006724B0 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8114AA862382BDE5006724B0 /* SettingsCell.swift */; };
 		8120C951237D543D009F8D91 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C950237D543D009F8D91 /* CardViewModel.swift */; };
 		8140A1A92381942700C7DE8A /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8140A1A82381942700C7DE8A /* Bindable.swift */; };
 		818D7725237BF5230070D1FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818D7724237BF5230070D1FC /* AppDelegate.swift */; };
@@ -26,10 +31,16 @@
 		81A81D54237EE7C3009966ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81A81D53237EE7C3009966ED /* GoogleService-Info.plist */; };
 		81B83F9D237D5C03008A7663 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B83F9C237D5C03008A7663 /* Advertiser.swift */; };
 		81B83F9F237D9D0C008A7663 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B83F9E237D9D0C008A7663 /* RegistrationController.swift */; };
+		81DB12E92383102300807998 /* AgeRangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DB12E82383102300807998 /* AgeRangeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7A4FCA45D21EDAE0A52F25D9 /* Pods-GameSetMatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameSetMatch.debug.xcconfig"; path = "Target Support Files/Pods-GameSetMatch/Pods-GameSetMatch.debug.xcconfig"; sourceTree = "<group>"; };
+		811327142383FB0700AF5F88 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		811327152383FB0700AF5F88 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		8113271923841FB700AF5F88 /* UserDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsController.swift; sourceTree = "<group>"; };
+		8114AA842382AC8C006724B0 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		8114AA862382BDE5006724B0 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		8120C950237D543D009F8D91 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		8140A1A82381942700C7DE8A /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		818D7721237BF5230070D1FC /* GameSetMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameSetMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +61,7 @@
 		81A81D53237EE7C3009966ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		81B83F9C237D5C03008A7663 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
 		81B83F9E237D9D0C008A7663 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		81DB12E82383102300807998 /* AgeRangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRangeCell.swift; sourceTree = "<group>"; };
 		BD3AEAD93A732B2F49A5BB66 /* Pods-GameSetMatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameSetMatch.release.xcconfig"; path = "Target Support Files/Pods-GameSetMatch/Pods-GameSetMatch.release.xcconfig"; sourceTree = "<group>"; };
 		BDAB33CC88ED83FFB203AA87 /* Pods_GameSetMatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GameSetMatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -83,11 +95,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		811327132383FAA200AF5F88 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				811327152383FB0700AF5F88 /* LoginController.swift */,
+				811327142383FB0700AF5F88 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		8113271823841F9800AF5F88 /* User Details */ = {
+			isa = PBXGroup;
+			children = (
+				8113271923841FB700AF5F88 /* UserDetailsController.swift */,
+			);
+			path = "User Details";
+			sourceTree = "<group>";
+		};
 		8120C94E237D5396009F8D91 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8113271823841F9800AF5F88 /* User Details */,
+				811327132383FAA200AF5F88 /* Login */,
 				818D7728237BF5230070D1FC /* HomeController.swift */,
 				81B83F9E237D9D0C008A7663 /* RegistrationController.swift */,
+				8114AA842382AC8C006724B0 /* SettingsController.swift */,
 				81A81D51237ED3CB009966ED /* RegistrationViewModel.swift */,
 				8140A1A82381942700C7DE8A /* Bindable.swift */,
 			);
@@ -154,6 +186,8 @@
 				818D773C237C024D0070D1FC /* HomeBottomControlsStackView.swift */,
 				818D7740237C14D20070D1FC /* CardView.swift */,
 				81A81D4F237EB497009966ED /* CustomTextField.swift */,
+				8114AA862382BDE5006724B0 /* SettingsCell.swift */,
+				81DB12E82383102300807998 /* AgeRangeCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -283,12 +317,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				811327172383FB0700AF5F88 /* LoginController.swift in Sources */,
 				81B83F9D237D5C03008A7663 /* Advertiser.swift in Sources */,
 				818D7741237C14D20070D1FC /* CardView.swift in Sources */,
 				818D7729237BF5230070D1FC /* HomeController.swift in Sources */,
 				818D7725237BF5230070D1FC /* AppDelegate.swift in Sources */,
 				818D773D237C024D0070D1FC /* HomeBottomControlsStackView.swift in Sources */,
+				81DB12E92383102300807998 /* AgeRangeCell.swift in Sources */,
+				8113271A23841FB700AF5F88 /* UserDetailsController.swift in Sources */,
 				818D7744237C344B0070D1FC /* User.swift in Sources */,
+				8114AA852382AC8C006724B0 /* SettingsController.swift in Sources */,
+				811327162383FB0700AF5F88 /* LoginViewModel.swift in Sources */,
 				81B83F9F237D9D0C008A7663 /* RegistrationController.swift in Sources */,
 				818D773F237C07DA0070D1FC /* TopNavigationStackView.swift in Sources */,
 				8140A1A92381942700C7DE8A /* Bindable.swift in Sources */,
@@ -296,6 +335,7 @@
 				81A81D52237ED3CB009966ED /* RegistrationViewModel.swift in Sources */,
 				818D773A237BF7130070D1FC /* Extensions+UIView.swift in Sources */,
 				818D7727237BF5230070D1FC /* SceneDelegate.swift in Sources */,
+				8114AA872382BDE5006724B0 /* SettingsCell.swift in Sources */,
 				8120C951237D543D009F8D91 /* CardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

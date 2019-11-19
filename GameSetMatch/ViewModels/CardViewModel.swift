@@ -15,19 +15,19 @@ protocol PoducesCardViewModel {
 // View Model is supposed to represent the State of our view
 class CardViewModel {
 
-    let imageNames: [String]
+    let imageUrls: [String]
     let attributedText: NSAttributedString
     let textAlignment: NSTextAlignment
     
     init(imageNames: [String], attributedText: NSAttributedString, textAlignment: NSTextAlignment) {
-        self.imageNames = imageNames
+        self.imageUrls = imageNames
         self.attributedText = attributedText
         self.textAlignment = textAlignment
     }
     
     fileprivate var imageIndex = 0 {
         didSet {
-            let imageUrl = imageNames[imageIndex]
+            let imageUrl = imageUrls[imageIndex]
 //            let image = UIImage(named: imageName)
             imageIndexObserver?(imageIndex, imageUrl)
         }
@@ -37,7 +37,7 @@ class CardViewModel {
     var imageIndexObserver: ((Int, String?) -> ())?
     
     func advanceToNextPhoto() {
-        imageIndex = min(imageIndex + 1, imageNames.count - 1)
+        imageIndex = min(imageIndex + 1, imageUrls.count - 1)
     }
     
     func goToPreviousPhoto() {

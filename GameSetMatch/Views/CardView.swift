@@ -9,12 +9,17 @@
 import UIKit
 import SDWebImage
 
+protocol CardViewDelegate {
+    func didTapMoreInfo(cardViewModel: CardViewModel)
+}
+
 class CardView: UIView {
+    
+    var delegate: CardViewDelegate?
     
     var cardViewModel: CardViewModel! {
         didSet {
-            let imageName = cardViewModel.imageNames.first ?? ""
-//            imageView.image = UIImage(named: imageName)
+            let imageName = cardViewModel.imageUrls.first ?? ""
             if let url = URL(string: imageName) {
                 imageView.sd_setImage(with: url)
             }
@@ -22,14 +27,16 @@ class CardView: UIView {
             informationLabel.attributedText = cardViewModel.attributedText
             informationLabel.textAlignment = cardViewModel.textAlignment
             
-            (0..<cardViewModel.imageNames.count).forEach { (_) in
-                let barView = UIView()
-                barView.backgroundColor = barDeselectedColor
-                barView.layer.cornerRadius = 2
-                barView.clipsToBounds = true
-                barsStackView.addArrangedSubview(barView)
+            if cardViewModel.imageUrls.count > 1 {
+                (0..<cardViewModel.imageUrls.count).forEach { (_) in
+                    let barView = UIView()
+                    barView.backgroundColor = barDeselectedColor
+                    barView.layer.cornerRadius = 2
+                    barView.clipsToBounds = true
+                    barsStackView.addArrangedSubview(barView)
+                    barsStackView.arrangedSubviews.first?.backgroundColor = .white
+                }
             }
-            barsStackView.arrangedSubviews.first?.backgroundColor = .white
             
             setupImageIndexObserver()
         }
@@ -40,8 +47,6 @@ class CardView: UIView {
             if let url = URL(string: imageUrl ?? "") {
                 self?.imageView.sd_setImage(with: url)
             }
-            
-            
             self?.barsStackView.arrangedSubviews.forEach { (view) in
                 view.backgroundColor = self?.barDeselectedColor
             }
@@ -82,6 +87,19 @@ class CardView: UIView {
         }
     }
     
+    fileprivate let moreInfoButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "info_icon").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleMoreInfo), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc fileprivate func handleMoreInfo() {
+        // using a delegate to present another ViewController
+        delegate?.didTapMoreInfo(cardViewModel: self.cardViewModel)
+        
+    }
+    
     fileprivate func setupLayout() {
         // custom drawing code
         layer.cornerRadius = 10
@@ -100,6 +118,9 @@ class CardView: UIView {
         informationLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 16, right: 16))
         informationLabel.textColor = .white
         informationLabel.numberOfLines = 0
+        
+        addSubview(moreInfoButton)
+        moreInfoButton.anchor(top: nil, leading: nil, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 16, right: 16), size: .init(width: 30, height: 30))
     }
     
     fileprivate let barsStackView = UIStackView()
