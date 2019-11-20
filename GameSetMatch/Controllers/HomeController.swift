@@ -71,7 +71,11 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
     var lastFetchedUser: User?
     
     fileprivate func fetchUsersFromFirestore() {
-        guard let minAge = user?.minSeekingAge, let maxAge = user?.maxSeekingAge else { return }
+//        guard let minAge = user?.minSeekingAge, let maxAge = user?.maxSeekingAge else { return }
+        
+        let minAge = user?.minSeekingAge ?? User.defaultMinSeekingAge
+        let maxAge = user?.maxSeekingAge ?? User.defaulMaxSeekingAge
+        
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Fetching users"
         hud.show(in: view)
@@ -89,8 +93,6 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                 if user.uid != Auth.auth().currentUser?.uid {
                     self.setupCardFromUser(user: user)
                 }
-//                self.cardViewModels.append(user.toCardViewModel())
-//                self.lastFetchedUser = user
             })
         }
     }

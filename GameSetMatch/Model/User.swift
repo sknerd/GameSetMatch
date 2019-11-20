@@ -21,6 +21,9 @@ struct User: PoducesCardViewModel {
     var minSeekingAge: Int?
     var maxSeekingAge: Int?
     
+    static var defaultMinSeekingAge = 18
+    static var defaulMaxSeekingAge = 50
+    
     init(dictionary: [String: Any]) {
         // initializing our user here
         self.age = dictionary["age"] as? Int
@@ -49,8 +52,8 @@ struct User: PoducesCardViewModel {
         var imageUrls = [String]()
         
         if let url = imageUrl1 { imageUrls.append(url) }
-        if let url = imageUrl2 { imageUrls.append(url) }
-        if let url = imageUrl3 { imageUrls.append(url) }
+        if imageUrl2?.isEmpty == false { imageUrls.append(imageUrl2!) }
+        if imageUrl3?.isEmpty == false { imageUrls.append(imageUrl3!) }
         
         return CardViewModel(imageNames: imageUrls, attributedText: attributedText, textAlignment: .left)
     }

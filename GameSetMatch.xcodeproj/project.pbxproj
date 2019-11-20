@@ -11,6 +11,7 @@
 		811327162383FB0700AF5F88 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811327142383FB0700AF5F88 /* LoginViewModel.swift */; };
 		811327172383FB0700AF5F88 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811327152383FB0700AF5F88 /* LoginController.swift */; };
 		8113271A23841FB700AF5F88 /* UserDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8113271923841FB700AF5F88 /* UserDetailsController.swift */; };
+		8113271C2384421F00AF5F88 /* SwipingPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8113271B2384421F00AF5F88 /* SwipingPhotosController.swift */; };
 		8114AA852382AC8C006724B0 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8114AA842382AC8C006724B0 /* SettingsController.swift */; };
 		8114AA872382BDE5006724B0 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8114AA862382BDE5006724B0 /* SettingsCell.swift */; };
 		8120C951237D543D009F8D91 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C950237D543D009F8D91 /* CardViewModel.swift */; };
@@ -29,6 +30,7 @@
 		81A81D50237EB497009966ED /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A81D4F237EB497009966ED /* CustomTextField.swift */; };
 		81A81D52237ED3CB009966ED /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A81D51237ED3CB009966ED /* RegistrationViewModel.swift */; };
 		81A81D54237EE7C3009966ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81A81D53237EE7C3009966ED /* GoogleService-Info.plist */; };
+		81B7448C238565360092826D /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B7448B238565360092826D /* PhotoController.swift */; };
 		81B83F9D237D5C03008A7663 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B83F9C237D5C03008A7663 /* Advertiser.swift */; };
 		81B83F9F237D9D0C008A7663 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B83F9E237D9D0C008A7663 /* RegistrationController.swift */; };
 		81DB12E92383102300807998 /* AgeRangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DB12E82383102300807998 /* AgeRangeCell.swift */; };
@@ -39,6 +41,7 @@
 		811327142383FB0700AF5F88 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		811327152383FB0700AF5F88 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		8113271923841FB700AF5F88 /* UserDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsController.swift; sourceTree = "<group>"; };
+		8113271B2384421F00AF5F88 /* SwipingPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingPhotosController.swift; sourceTree = "<group>"; };
 		8114AA842382AC8C006724B0 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		8114AA862382BDE5006724B0 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		8120C950237D543D009F8D91 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
@@ -59,6 +62,7 @@
 		81A81D4F237EB497009966ED /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		81A81D51237ED3CB009966ED /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		81A81D53237EE7C3009966ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		81B7448B238565360092826D /* PhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
 		81B83F9C237D5C03008A7663 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
 		81B83F9E237D9D0C008A7663 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		81DB12E82383102300807998 /* AgeRangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRangeCell.swift; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				8113271923841FB700AF5F88 /* UserDetailsController.swift */,
+				8113271B2384421F00AF5F88 /* SwipingPhotosController.swift */,
+				81B7448B238565360092826D /* PhotoController.swift */,
 			);
 			path = "User Details";
 			sourceTree = "<group>";
@@ -119,8 +125,8 @@
 				811327132383FAA200AF5F88 /* Login */,
 				818D7728237BF5230070D1FC /* HomeController.swift */,
 				81B83F9E237D9D0C008A7663 /* RegistrationController.swift */,
-				8114AA842382AC8C006724B0 /* SettingsController.swift */,
 				81A81D51237ED3CB009966ED /* RegistrationViewModel.swift */,
+				8114AA842382AC8C006724B0 /* SettingsController.swift */,
 				8140A1A82381942700C7DE8A /* Bindable.swift */,
 			);
 			path = Controllers;
@@ -333,10 +339,12 @@
 				8140A1A92381942700C7DE8A /* Bindable.swift in Sources */,
 				81A81D50237EB497009966ED /* CustomTextField.swift in Sources */,
 				81A81D52237ED3CB009966ED /* RegistrationViewModel.swift in Sources */,
+				81B7448C238565360092826D /* PhotoController.swift in Sources */,
 				818D773A237BF7130070D1FC /* Extensions+UIView.swift in Sources */,
 				818D7727237BF5230070D1FC /* SceneDelegate.swift in Sources */,
 				8114AA872382BDE5006724B0 /* SettingsCell.swift in Sources */,
 				8120C951237D543D009F8D91 /* CardViewModel.swift in Sources */,
+				8113271C2384421F00AF5F88 /* SwipingPhotosController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
