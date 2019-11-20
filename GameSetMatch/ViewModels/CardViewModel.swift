@@ -14,12 +14,14 @@ protocol PoducesCardViewModel {
 
 // View Model is supposed to represent the State of our view
 class CardViewModel {
-
+    
+    let uid: String
     let imageUrls: [String]
     let attributedText: NSAttributedString
     let textAlignment: NSTextAlignment
     
-    init(imageNames: [String], attributedText: NSAttributedString, textAlignment: NSTextAlignment) {
+    init(uid: String, imageNames: [String], attributedText: NSAttributedString, textAlignment: NSTextAlignment) {
+        self.uid = uid
         self.imageUrls = imageNames
         self.attributedText = attributedText
         self.textAlignment = textAlignment

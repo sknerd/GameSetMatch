@@ -10,6 +10,7 @@ import UIKit
 
 
 struct User: PoducesCardViewModel {
+   
     var name: String?
     var age: Int?
     var profession: String?
@@ -55,7 +56,7 @@ struct User: PoducesCardViewModel {
         if imageUrl2?.isEmpty == false { imageUrls.append(imageUrl2!) }
         if imageUrl3?.isEmpty == false { imageUrls.append(imageUrl3!) }
         
-        return CardViewModel(imageNames: imageUrls, attributedText: attributedText, textAlignment: .left)
+        return CardViewModel(uid: self.uid ?? "", imageNames: imageUrls, attributedText: attributedText, textAlignment: .left)
     }
     
 }
