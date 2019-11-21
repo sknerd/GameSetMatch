@@ -16,6 +16,10 @@
 		8114AA872382BDE5006724B0 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8114AA862382BDE5006724B0 /* SettingsCell.swift */; };
 		8120C951237D543D009F8D91 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120C950237D543D009F8D91 /* CardViewModel.swift */; };
 		8140A1A92381942700C7DE8A /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8140A1A82381942700C7DE8A /* Bindable.swift */; };
+		81479986238696460072B7D2 /* Firebase+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81479985238696460072B7D2 /* Firebase+Utils.swift */; };
+		814799882386A1720072B7D2 /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814799872386A1720072B7D2 /* MatchView.swift */; };
+		8147998A2386ACAF0072B7D2 /* SendMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814799892386ACAF0072B7D2 /* SendMessageButton.swift */; };
+		8147998C2386B2800072B7D2 /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8147998B2386B2800072B7D2 /* KeepSwipingButton.swift */; };
 		818D7725237BF5230070D1FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818D7724237BF5230070D1FC /* AppDelegate.swift */; };
 		818D7727237BF5230070D1FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818D7726237BF5230070D1FC /* SceneDelegate.swift */; };
 		818D7729237BF5230070D1FC /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818D7728237BF5230070D1FC /* HomeController.swift */; };
@@ -46,6 +50,10 @@
 		8114AA862382BDE5006724B0 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		8120C950237D543D009F8D91 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		8140A1A82381942700C7DE8A /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		81479985238696460072B7D2 /* Firebase+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Utils.swift"; sourceTree = "<group>"; };
+		814799872386A1720072B7D2 /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
+		814799892386ACAF0072B7D2 /* SendMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageButton.swift; sourceTree = "<group>"; };
+		8147998B2386B2800072B7D2 /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
 		818D7721237BF5230070D1FC /* GameSetMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameSetMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818D7724237BF5230070D1FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		818D7726237BF5230070D1FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -181,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				818D7739237BF7130070D1FC /* Extensions+UIView.swift */,
+				81479985238696460072B7D2 /* Firebase+Utils.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -194,6 +203,9 @@
 				81A81D4F237EB497009966ED /* CustomTextField.swift */,
 				8114AA862382BDE5006724B0 /* SettingsCell.swift */,
 				81DB12E82383102300807998 /* AgeRangeCell.swift */,
+				814799872386A1720072B7D2 /* MatchView.swift */,
+				814799892386ACAF0072B7D2 /* SendMessageButton.swift */,
+				8147998B2386B2800072B7D2 /* KeepSwipingButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -324,14 +336,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				811327172383FB0700AF5F88 /* LoginController.swift in Sources */,
+				81479986238696460072B7D2 /* Firebase+Utils.swift in Sources */,
 				81B83F9D237D5C03008A7663 /* Advertiser.swift in Sources */,
 				818D7741237C14D20070D1FC /* CardView.swift in Sources */,
+				8147998A2386ACAF0072B7D2 /* SendMessageButton.swift in Sources */,
 				818D7729237BF5230070D1FC /* HomeController.swift in Sources */,
 				818D7725237BF5230070D1FC /* AppDelegate.swift in Sources */,
 				818D773D237C024D0070D1FC /* HomeBottomControlsStackView.swift in Sources */,
 				81DB12E92383102300807998 /* AgeRangeCell.swift in Sources */,
 				8113271A23841FB700AF5F88 /* UserDetailsController.swift in Sources */,
 				818D7744237C344B0070D1FC /* User.swift in Sources */,
+				814799882386A1720072B7D2 /* MatchView.swift in Sources */,
 				8114AA852382AC8C006724B0 /* SettingsController.swift in Sources */,
 				811327162383FB0700AF5F88 /* LoginViewModel.swift in Sources */,
 				81B83F9F237D9D0C008A7663 /* RegistrationController.swift in Sources */,
@@ -342,6 +357,7 @@
 				81B7448C238565360092826D /* PhotoController.swift in Sources */,
 				818D773A237BF7130070D1FC /* Extensions+UIView.swift in Sources */,
 				818D7727237BF5230070D1FC /* SceneDelegate.swift in Sources */,
+				8147998C2386B2800072B7D2 /* KeepSwipingButton.swift in Sources */,
 				8114AA872382BDE5006724B0 /* SettingsCell.swift in Sources */,
 				8120C951237D543D009F8D91 /* CardViewModel.swift in Sources */,
 				8113271C2384421F00AF5F88 /* SwipingPhotosController.swift in Sources */,

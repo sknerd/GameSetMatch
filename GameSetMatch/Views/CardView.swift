@@ -170,6 +170,7 @@ class CardView: UIView {
         let shouldDismissCard = abs(gesture.translation(in: nil).x) > threshold
         
         if shouldDismissCard {
+            self.isUserInteractionEnabled = false
             // hack solution
             guard let homeController = self.delegate as? HomeController else { return }
             
