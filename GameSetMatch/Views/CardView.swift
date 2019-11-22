@@ -55,6 +55,9 @@ class CardView: UIView {
     fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let informationLabel = UILabel()
     
+    fileprivate let likeLabelImageView = UIImageView(image: #imageLiteral(resourceName: "like_label"))
+    fileprivate let nopeLabelImageView = UIImageView(image: #imageLiteral(resourceName: "nope_label"))
+    
     // Configuration
     fileprivate let threshold: CGFloat = 80
     
@@ -117,6 +120,16 @@ class CardView: UIView {
         
         addSubview(moreInfoButton)
         moreInfoButton.anchor(top: nil, leading: nil, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 16, right: 16), size: .init(width: 30, height: 30))
+        
+//        let likeNopeStackView = UIStackView(arrangedSubviews: [likeLabelImageView, nopeLabelImageView])
+        
+        addSubview(nopeLabelImageView)
+         nopeLabelImageView.anchor(top: nil, leading: nil, bottom: nil, trailing: trailingAnchor, padding: .init(top: 8, left: 0, bottom: 0, right: 8))
+        nopeLabelImageView.alpha = 0
+        
+        addSubview(likeLabelImageView)
+         likeLabelImageView.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 8, left: 8, bottom: 0, right: 0))
+        likeLabelImageView.alpha = 0
     }
     
     fileprivate let barsStackView = UIStackView()
@@ -162,6 +175,11 @@ class CardView: UIView {
         
         let rotationalTransformation = CGAffineTransform(rotationAngle: angle)
         self.transform = rotationalTransformation.translatedBy(x: translation.x, y: translation.y)
+        if gesture.translation(in: nil).x > 0 {
+            likeLabelImageView.alpha = gesture.translation(in: nil).x / 100
+        } else {
+            nopeLabelImageView.alpha = -(gesture.translation(in: nil).x / 100)
+        }
     }
     
     fileprivate func handleEnded(_ gesture: UIPanGestureRecognizer) {
@@ -171,6 +189,7 @@ class CardView: UIView {
         
         if shouldDismissCard {
             self.isUserInteractionEnabled = false
+            
             // hack solution
             guard let homeController = self.delegate as? HomeController else { return }
             
@@ -182,25 +201,12 @@ class CardView: UIView {
         } else {
             UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
                 self.transform = .identity
+                self.likeLabelImageView.alpha = 0
+                self.nopeLabelImageView.alpha = 0
             })
         }
         
-//        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
-//
-//            if shouldDismissCard {
-//                self.layer.frame = CGRect(x: 1000 * translationDirection, y: 0, width: self.frame.width, height: self.frame.height)
-//            } else {
-//                self.transform = .identity
-//            }
-//
-//        }) { (_) in
-//            self.transform = .identity
-//
-//            if shouldDismissCard {
-//                self.removeFromSuperview()
-//                self.delegate?.didRemoveCard(cardView: self)
-//            }
-//        }
+        //TODO:- Figure out how to show "like" and "nope" labels on pushing like/dislike buttons
     }
     
     required init?(coder: NSCoder) {
