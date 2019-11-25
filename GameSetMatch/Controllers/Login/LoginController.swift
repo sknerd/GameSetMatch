@@ -72,7 +72,6 @@ class LoginController: UIViewController {
                 print("Failed to log in:", err)
                 return
             }
-            
             print("Logged in successfully")
             self.dismiss(animated: true, completion: {
                 self.delegate?.didFinishLoggingIn()

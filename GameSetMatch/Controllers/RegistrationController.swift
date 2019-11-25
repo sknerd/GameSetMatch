@@ -121,8 +121,9 @@ class RegistrationController: UIViewController {
     fileprivate func showHUDWithError(error: Error) {
         registeringHUD.dismiss()
         let hud = JGProgressHUD(style: .dark)
-        hud.textLabel.text = "Failed refistration"
+        hud.textLabel.text = "Failed registration"
         hud.detailTextLabel.text = error.localizedDescription
+        hud.indicatorView = .none
         hud.show(in: self.view)
         hud.dismiss(afterDelay: 4)
     }

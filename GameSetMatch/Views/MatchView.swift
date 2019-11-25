@@ -81,7 +81,7 @@ class MatchView: UIView {
     
     fileprivate let sendMessageButton: UIButton = {
         let button = SendMessageButton(type: .system)
-        button.setTitle("ПОЙТИ КАЙФОВАТЬ В БАР", for: .normal)
+        button.setTitle("SEND MESSAGE", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         return button
@@ -89,7 +89,7 @@ class MatchView: UIView {
     
     fileprivate let keepSwipingButton: UIButton = {
         let button = KeepSwipingButton(type: .system)
-        button.setTitle("СИДЕТЬ СКУЧАТЬ ДОМА", for: .normal)
+        button.setTitle("KEEP SWIPING", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         return button
