@@ -22,6 +22,10 @@ class CustomImagePickerController: UIImagePickerController {
 
 class SettingsController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    deinit {
+        print("Object is destroing itself properly, no retain cycles")
+    }
+    
     var delegate: SettingsControllerDelegate?
     
     // instance properties
@@ -215,7 +219,6 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
         user?.maxSeekingAge = maxValue
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 5 {
@@ -229,7 +232,7 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
             ageRangeCell.maxLabel.text = "Max: \(maxAge)"
             ageRangeCell.minSlider.value = Float(minAge)
             ageRangeCell.maxSlider.value = Float(maxAge)
-                        
+            
             return ageRangeCell
         }
         let cell = SettingsCell(style: .default, reuseIdentifier: nil)
@@ -260,11 +263,11 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
         self.user?.name = textField.text
         
     }
-
+    
     @objc fileprivate func handleProfessionChange(textField: UITextField) {
         self.user?.profession = textField.text
     }
-
+    
     @objc fileprivate func handleAgeChange(textField: UITextField) {
         self.user?.age = Int(textField.text ?? "")
     }

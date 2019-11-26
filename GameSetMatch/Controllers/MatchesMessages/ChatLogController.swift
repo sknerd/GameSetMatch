@@ -7,6 +7,7 @@
 //
 
 import LBTATools
+import Firebase
 
 class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionViewDelegateFlowLayout {
     
@@ -21,62 +22,73 @@ class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionV
         super.init()
     }
     
-    // input accessory view
+    lazy var customInputView: CustomInputAcessoryView = {
+        let civ = CustomInputAcessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
+        civ.sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
+        return civ
+    }()
     
-    class CustomInputAcessoryView: UIView {
+    @objc fileprivate func handleSend() {
         
-        let textView = UITextView()
-        let sendButton = UIButton(title: "SEND", titleColor: .black, font: .boldSystemFont(ofSize: 14), backgroundColor: .white, target: nil, action: nil)
+        saveToFromMessages()
+        saveToFromRecentMessages()
+    }
+    
+    fileprivate func saveToFromRecentMessages() {
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
         
-        let placeholderLabel = UILabel(text: "Enter Message", font: .systemFont(ofSize: 16), textColor: .lightGray, textAlignment: .left)
-        
-        override var intrinsicContentSize: CGSize {
-            return .zero
+        let data = ["text": customInputView.textView.text ?? "", "name": match.name, "profileImageUrl": match.profileImageUrl, "timestamp": Timestamp(date: Date()), "uid": match.uid] as [String : Any]
+        Firestore.firestore().collection("matches_messages").document(currentUserId).collection("recent_messages").document(match.uid).setData(data) { (err) in
+            if let err = err {
+                print("Failed to save recent message to Firestore:", err)
+                return
+            }
+            print("Saved recent message")
         }
         
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-            
-            backgroundColor = .white
-            setupShadow(opacity: 0.15, radius: 8, offset: .init(width: 0, height: -8), color: .lightGray)
-            autoresizingMask = .flexibleHeight
-            
-            textView.text = ""
-            textView.isScrollEnabled = false
-            textView.font = .systemFont(ofSize: 16)
-            
-            NotificationCenter.default.addObserver(self, selector: #selector(handleTextChange), name: UITextView.textDidChangeNotification, object: nil)
-            
-            hstack(textView,
-                   sendButton.withSize(.init(width: 60, height: 60)),
-                   alignment: .center
-            ).withMargins(.init(top: 0, left: 16, bottom: 0, right: 16))
-            
-            addSubview(placeholderLabel)
-            placeholderLabel.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: sendButton.leadingAnchor, padding: .init(top: 0, left: 20, bottom: 0, right: 0))
-            placeholderLabel.centerYAnchor.constraint(equalTo: sendButton.centerYAnchor).isActive = true
+        // save in other direction
+        guard let currentUser = self.currentUser else { return }
+        
+        let toData = ["text": customInputView.textView.text ?? "", "name": currentUser.name ?? "", "profileImageUrl": currentUser.imageUrl1 ?? "", "timestamp": Timestamp(date: Date()), "uid": currentUserId] as [String: Any]
+        
+        Firestore.firestore().collection("matches_messages").document(match.uid).collection("recent_messages").document(currentUserId).setData(toData)
+    }
+    
+    fileprivate func saveToFromMessages() {
+        self.customInputView.sendButton.isEnabled = false
+        
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        
+        let collection = Firestore.firestore().collection("matches_messages").document(currentUserId).collection(match.uid)
+        
+        let data = ["text": customInputView.textView.text ?? "", "fromId": currentUserId, "toId": match.uid, "timestamp": Timestamp(date: Date())] as [String : Any]
+        
+        collection.addDocument(data: data) { (err) in
+            if let err = err {
+                print("Failed to save message:", err)
+                return
+            }
+            print("Sucessfully saved message into Firestore")
+            self.customInputView.textView.text = nil
+            self.customInputView.placeholderLabel.isHidden = false
         }
         
-        @objc fileprivate func handleTextChange() {
-            placeholderLabel.isHidden = textView.text.count != 0
-        }
+        let toCollection = Firestore.firestore().collection("matches_messages").document(match.uid).collection(currentUserId)
         
-        deinit {
-            NotificationCenter.default.removeObserver(self)
-        }
-        
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
+        toCollection.addDocument(data: data) { (err) in
+            if let err = err {
+                print("Failed to save message:", err)
+                return
+            }
+            print("Sucessfully saved message into Firestore")
+            self.customInputView.textView.text = nil
+            self.customInputView.placeholderLabel.isHidden = false
         }
     }
     
-    lazy var redView: UIView = {
-        return CustomInputAcessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
-    }()
-    
     override var inputAccessoryView: UIView? {
         get {
-            return redView
+            return customInputView
         }
     }
     
@@ -84,21 +96,70 @@ class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionV
         return true
     }
     
+    // setting up the listener to remove retain cycles
+    var listener: ListenerRegistration?
+    
+    fileprivate func fetchMessages() {
+        print("Fetching messages...")
+        
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        
+        let query = Firestore.firestore().collection("matches_messages").document(currentUserId).collection(match.uid).order(by: "timestamp")
+        
+        listener = query.addSnapshotListener { (querySnapshot, err) in
+            if let err = err {
+                print("Failed to fetch messages:", err)
+                return
+            }
+            querySnapshot?.documentChanges.forEach({ (change) in
+                if change.type == .added {
+                    let dictionary = change.document.data()
+                    self.items.append(.init(dictionary: dictionary))
+                }
+            })
+            self.collectionView.reloadData()
+            self.collectionView.scrollToItem(at: [0, self.items.count - 1], at: .bottom, animated: true)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // tells you if our view being popped of the nav stack
+        if isMovingFromParent {
+            listener?.remove()
+        }
+    }
+    
+    var currentUser: User?
+    
+    fileprivate func fetchCurrentUser() {
+        Firestore.firestore().collection("users").document(Auth.auth().currentUser?.uid ?? "").getDocument { (snapshot, err) in
+            if let err = err {
+                print("Failed to fetch current user object from Firestore:", err)
+                return
+            }
+            let data = snapshot?.data() ?? [:]
+            self.currentUser = User(dictionary: data)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchCurrentUser()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardDidShowNotification, object: nil)
+        
         collectionView.keyboardDismissMode = .interactive
         
-        items = [
-            .init(text: "Hello fucking whore", isFromCurrentLoggedUser: true),
-            .init(text: "Shit piss fuck cunt", isFromCurrentLoggedUser: false),
-            .init(text: "Lol", isFromCurrentLoggedUser: false),
-            .init(text: "Fucking hoe", isFromCurrentLoggedUser: true),
-            .init(text: "Kaya Thomas has always been a voracious reader, yet growing up she rarely came across protagonists who looked like her. “High school was when I started to realize that none of the characters were ever black girls", isFromCurrentLoggedUser: true),
-            .init(text: "Kaya Thomas has always been a voracious reader, yet growing up she rarely came across protagonists who looked like her. “High school was when I started to realize that none of the characters were ever black girls", isFromCurrentLoggedUser: false)
-        ]
+        fetchMessages()
         
         setupUI()
+    }
+    
+    @objc fileprivate func handleKeyboardShow() {
+        self.collectionView.scrollToItem(at: [0, items.count - 1], at: .bottom, animated: true)
     }
     
     fileprivate func setupUI() {
@@ -107,6 +168,7 @@ class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionV
         customNavBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, size: .init(width: 0, height: navBarHeight))
         
         collectionView.contentInset.top = navBarHeight
+        collectionView.contentInset.bottom = 8
         collectionView.verticalScrollIndicatorInsets.top = navBarHeight
         customNavBar.backButton.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
         
@@ -121,6 +183,10 @@ class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return .init(top: 16, left: 0, bottom: 16, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

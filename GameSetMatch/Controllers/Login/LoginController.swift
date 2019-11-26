@@ -97,8 +97,6 @@ class LoginController: UIViewController {
         
         setupGradientLayer()
         setupLayout()
-        
-        
         setupBindables()
     }
     

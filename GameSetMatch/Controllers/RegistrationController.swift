@@ -26,7 +26,7 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
     }
-
+    
 }
 
 class RegistrationController: UIViewController {

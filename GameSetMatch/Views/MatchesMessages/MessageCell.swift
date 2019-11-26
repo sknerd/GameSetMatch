@@ -28,7 +28,7 @@ class MessageCell: LBTAListCell<Message> {
             if item.isFromCurrentLoggedUser {
                 anchoredConstraints.trailing?.isActive = true
                 anchoredConstraints.leading?.isActive = false
-                bubbleContainer.backgroundColor = #colorLiteral(red: 0.0842892006, green: 0.7594847083, blue: 0.9999734759, alpha: 1)
+                bubbleContainer.backgroundColor = #colorLiteral(red: 0.1101056114, green: 0.7449226975, blue: 0.9989617467, alpha: 1)
                 textView.textColor = .white
             } else {
                 anchoredConstraints.trailing?.isActive = false

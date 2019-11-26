@@ -23,6 +23,8 @@
 		8147998A2386ACAF0072B7D2 /* SendMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814799892386ACAF0072B7D2 /* SendMessageButton.swift */; };
 		8147998C2386B2800072B7D2 /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8147998B2386B2800072B7D2 /* KeepSwipingButton.swift */; };
 		81500F84238AB3F3003BD40E /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81500F83238AB3F2003BD40E /* ChatLogController.swift */; };
+		815E8CEA238D348A005FE4FE /* MatchesHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E8CE9238D348A005FE4FE /* MatchesHeader.swift */; };
+		815E8CEC238D34E3005FE4FE /* MatchesHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E8CEB238D34E3005FE4FE /* MatchesHorizontalController.swift */; };
 		818D7725237BF5230070D1FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818D7724237BF5230070D1FC /* AppDelegate.swift */; };
 		818D7727237BF5230070D1FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818D7726237BF5230070D1FC /* SceneDelegate.swift */; };
 		818D7729237BF5230070D1FC /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818D7728237BF5230070D1FC /* HomeController.swift */; };
@@ -38,6 +40,9 @@
 		81A81D54237EE7C3009966ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81A81D53237EE7C3009966ED /* GoogleService-Info.plist */; };
 		81ABD5C9238BF840002050E8 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ABD5C8238BF840002050E8 /* MessageCell.swift */; };
 		81ABD5CB238BF88F002050E8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ABD5CA238BF88F002050E8 /* Message.swift */; };
+		81ABD5CD238C0530002050E8 /* CustomInputAcessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ABD5CC238C0530002050E8 /* CustomInputAcessoryView.swift */; };
+		81ABD5CF238C3F35002050E8 /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ABD5CE238C3F35002050E8 /* MatchCell.swift */; };
+		81ABD5D1238C3F6E002050E8 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ABD5D0238C3F6E002050E8 /* Match.swift */; };
 		81B7448C238565360092826D /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B7448B238565360092826D /* PhotoController.swift */; };
 		81B83F9D237D5C03008A7663 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B83F9C237D5C03008A7663 /* Advertiser.swift */; };
 		81B83F9F237D9D0C008A7663 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B83F9E237D9D0C008A7663 /* RegistrationController.swift */; };
@@ -62,6 +67,8 @@
 		814799892386ACAF0072B7D2 /* SendMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageButton.swift; sourceTree = "<group>"; };
 		8147998B2386B2800072B7D2 /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
 		81500F83238AB3F2003BD40E /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
+		815E8CE9238D348A005FE4FE /* MatchesHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesHeader.swift; sourceTree = "<group>"; };
+		815E8CEB238D34E3005FE4FE /* MatchesHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesHorizontalController.swift; sourceTree = "<group>"; };
 		818D7721237BF5230070D1FC /* GameSetMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameSetMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818D7724237BF5230070D1FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		818D7726237BF5230070D1FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +86,9 @@
 		81A81D53237EE7C3009966ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		81ABD5C8238BF840002050E8 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		81ABD5CA238BF88F002050E8 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		81ABD5CC238C0530002050E8 /* CustomInputAcessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputAcessoryView.swift; sourceTree = "<group>"; };
+		81ABD5CE238C3F35002050E8 /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
+		81ABD5D0238C3F6E002050E8 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		81B7448B238565360092826D /* PhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
 		81B83F9C237D5C03008A7663 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
 		81B83F9E237D9D0C008A7663 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
@@ -164,6 +174,9 @@
 			children = (
 				8128B956238AC02900D6D0FC /* MessagesNavBar.swift */,
 				81ABD5C8238BF840002050E8 /* MessageCell.swift */,
+				81ABD5CC238C0530002050E8 /* CustomInputAcessoryView.swift */,
+				81ABD5CE238C3F35002050E8 /* MatchCell.swift */,
+				815E8CE9238D348A005FE4FE /* MatchesHeader.swift */,
 			);
 			path = MatchesMessages;
 			sourceTree = "<group>";
@@ -237,6 +250,7 @@
 				818D7743237C344B0070D1FC /* User.swift */,
 				81B83F9C237D5C03008A7663 /* Advertiser.swift */,
 				81ABD5CA238BF88F002050E8 /* Message.swift */,
+				81ABD5D0238C3F6E002050E8 /* Match.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -246,6 +260,7 @@
 			children = (
 				81F6EDF4238802AD00926099 /* MatchesMessagesController.swift */,
 				81500F83238AB3F2003BD40E /* ChatLogController.swift */,
+				815E8CEB238D34E3005FE4FE /* MatchesHorizontalController.swift */,
 			);
 			path = MatchesMessages;
 			sourceTree = "<group>";
@@ -373,11 +388,13 @@
 				8147998A2386ACAF0072B7D2 /* SendMessageButton.swift in Sources */,
 				818D7729237BF5230070D1FC /* HomeController.swift in Sources */,
 				818D7725237BF5230070D1FC /* AppDelegate.swift in Sources */,
+				81ABD5CD238C0530002050E8 /* CustomInputAcessoryView.swift in Sources */,
 				818D773D237C024D0070D1FC /* HomeBottomControlsStackView.swift in Sources */,
 				81DB12E92383102300807998 /* AgeRangeCell.swift in Sources */,
 				8113271A23841FB700AF5F88 /* UserDetailsController.swift in Sources */,
 				818D7744237C344B0070D1FC /* User.swift in Sources */,
 				81ABD5C9238BF840002050E8 /* MessageCell.swift in Sources */,
+				815E8CEC238D34E3005FE4FE /* MatchesHorizontalController.swift in Sources */,
 				814799882386A1720072B7D2 /* MatchView.swift in Sources */,
 				8114AA852382AC8C006724B0 /* SettingsController.swift in Sources */,
 				811327162383FB0700AF5F88 /* LoginViewModel.swift in Sources */,
@@ -390,11 +407,14 @@
 				81A81D52237ED3CB009966ED /* RegistrationViewModel.swift in Sources */,
 				81B7448C238565360092826D /* PhotoController.swift in Sources */,
 				818D7727237BF5230070D1FC /* SceneDelegate.swift in Sources */,
+				81ABD5D1238C3F6E002050E8 /* Match.swift in Sources */,
 				8147998C2386B2800072B7D2 /* KeepSwipingButton.swift in Sources */,
+				815E8CEA238D348A005FE4FE /* MatchesHeader.swift in Sources */,
 				8114AA872382BDE5006724B0 /* SettingsCell.swift in Sources */,
 				81500F84238AB3F3003BD40E /* ChatLogController.swift in Sources */,
 				8120C951237D543D009F8D91 /* CardViewModel.swift in Sources */,
 				8113271C2384421F00AF5F88 /* SwipingPhotosController.swift in Sources */,
+				81ABD5CF238C3F35002050E8 /* MatchCell.swift in Sources */,
 				8128B957238AC02900D6D0FC /* MessagesNavBar.swift in Sources */,
 				81F6EDF5238802AD00926099 /* MatchesMessagesController.swift in Sources */,
 			);

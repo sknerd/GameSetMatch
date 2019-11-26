@@ -17,7 +17,7 @@ protocol CardViewDelegate {
 class CardView: UIView {
     
     var nextCardView: CardView?
-
+    
     var delegate: CardViewDelegate?
     
     var cardViewModel: CardViewModel! {
@@ -72,7 +72,7 @@ class CardView: UIView {
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
     }
     
-//    var imageIndex = 0
+    //    var imageIndex = 0
     fileprivate let barDeselectedColor = UIColor(white: 0, alpha: 0.2)
     
     @objc fileprivate func handleTap(gesture: UITapGestureRecognizer) {
@@ -104,11 +104,11 @@ class CardView: UIView {
         clipsToBounds = true
         
         let swipingPhotosView = swipingPhotosController.view!
-
+        
         addSubview(swipingPhotosView)
         swipingPhotosView.fillSuperview()
         
-//        setupBarsStackView()
+        //        setupBarsStackView()
         
         // add a gradient layer
         setupGradientLayer()
@@ -121,14 +121,14 @@ class CardView: UIView {
         addSubview(moreInfoButton)
         moreInfoButton.anchor(top: nil, leading: nil, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 16, right: 16), size: .init(width: 30, height: 30))
         
-//        let likeNopeStackView = UIStackView(arrangedSubviews: [likeLabelImageView, nopeLabelImageView])
+        //        let likeNopeStackView = UIStackView(arrangedSubviews: [likeLabelImageView, nopeLabelImageView])
         
         addSubview(nopeLabelImageView)
-         nopeLabelImageView.anchor(top: nil, leading: nil, bottom: nil, trailing: trailingAnchor, padding: .init(top: 8, left: 0, bottom: 0, right: 8))
+        nopeLabelImageView.anchor(top: nil, leading: nil, bottom: nil, trailing: trailingAnchor, padding: .init(top: 8, left: 0, bottom: 0, right: 8))
         nopeLabelImageView.alpha = 0
         
         addSubview(likeLabelImageView)
-         likeLabelImageView.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 8, left: 8, bottom: 0, right: 0))
+        likeLabelImageView.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 8, left: 8, bottom: 0, right: 0))
         likeLabelImageView.alpha = 0
     }
     
@@ -149,7 +149,7 @@ class CardView: UIView {
     }
     
     override func layoutSubviews() {
-        //detecting what our CardView frame will be
+        // detecting what our CardView frame will be
         gradientLayer.frame = self.frame
     }
     

@@ -22,7 +22,7 @@ class HomeBottomControlsStackView: UIStackView {
     let superLikeButton = createButton(image: #imageLiteral(resourceName: "super_like_circle"))
     let likeButton = createButton(image: #imageLiteral(resourceName: "like_circle"))
     let specialButton = createButton(image: #imageLiteral(resourceName: "boost_circle"))
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

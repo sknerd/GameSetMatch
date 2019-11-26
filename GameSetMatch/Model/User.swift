@@ -8,9 +8,8 @@
 
 import UIKit
 
-
 struct User: PoducesCardViewModel {
-   
+    
     var name: String?
     var age: Int?
     var profession: String?
@@ -26,7 +25,7 @@ struct User: PoducesCardViewModel {
     static var defaulMaxSeekingAge = 50
     
     init(dictionary: [String: Any]) {
-        // initializing our user here
+        // initializing our user
         self.age = dictionary["age"] as? Int
         self.profession = dictionary["profession"] as? String
         self.name = dictionary["fullName"] as? String ?? ""
@@ -37,7 +36,6 @@ struct User: PoducesCardViewModel {
         self.minSeekingAge = dictionary["minSeekingAge"] as? Int
         self.maxSeekingAge = dictionary["maxSeekingAge"] as? Int
     }
-    
     
     func toCardViewModel() -> CardViewModel {
         
@@ -58,5 +56,4 @@ struct User: PoducesCardViewModel {
         
         return CardViewModel(uid: self.uid ?? "", imageNames: imageUrls, attributedText: attributedText, textAlignment: .left)
     }
-    
 }

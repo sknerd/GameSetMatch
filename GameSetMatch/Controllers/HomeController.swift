@@ -11,7 +11,7 @@ import Firebase
 import JGProgressHUD
 
 class HomeController: UIViewController, SettingsControllerDelegate, RegistrationControllerDelegate, LoginControllerDelegate, CardViewDelegate{
-        
+    
     let topStackView = TopNavigationStackView()
     let cardsDeckView = UIView()
     let bottomControls = HomeBottomControlsStackView()
@@ -37,10 +37,10 @@ class HomeController: UIViewController, SettingsControllerDelegate, Registration
         let vc = MatchesMessagesController()
         navigationController?.pushViewController(vc, animated: true)
     }
-        
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-                
+        
         // kicking out the user
         if Auth.auth().currentUser == nil {
             let registrationController = RegistrationController()
@@ -60,7 +60,7 @@ class HomeController: UIViewController, SettingsControllerDelegate, Registration
         fetchUsersFromFirestore()
         print(321)
     }
-        
+    
     fileprivate let hud = JGProgressHUD(style: .dark)
     fileprivate var user: User?
     
@@ -250,7 +250,7 @@ class HomeController: UIViewController, SettingsControllerDelegate, Registration
                 }
                 guard let currentUser = self.user else { return }
                 
-                let otherMatchData = ["name": currentUser.name ?? "", "profileImageUrl": currentUser.imageUrl1 ?? "", "uid": cardUID, "timestamp": Timestamp(date: Date())] as [String : Any]
+                let otherMatchData = ["name": currentUser.name ?? "", "profileImageUrl": currentUser.imageUrl1 ?? "", "uid": currentUser.uid ?? "", "timestamp": Timestamp(date: Date())] as [String : Any]
                 Firestore.firestore().collection("matches_messages").document(cardUID).collection("matches").document(uid).setData(otherMatchData) { (err) in
                     if let err = err {
                         print("Failed to save match info:", err)
@@ -300,7 +300,6 @@ class HomeController: UIViewController, SettingsControllerDelegate, Registration
     }
     
     func didSaveSettings() {
-        print("Notified of dismissal from SettingsController in HomeController")
         fetchCurrentUser()
     }
     

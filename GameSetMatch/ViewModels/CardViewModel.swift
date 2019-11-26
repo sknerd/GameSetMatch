@@ -12,7 +12,6 @@ protocol PoducesCardViewModel {
     func toCardViewModel() -> CardViewModel
 }
 
-// View Model is supposed to represent the State of our view
 class CardViewModel {
     
     let uid: String
@@ -30,7 +29,6 @@ class CardViewModel {
     fileprivate var imageIndex = 0 {
         didSet {
             let imageUrl = imageUrls[imageIndex]
-//            let image = UIImage(named: imageName)
             imageIndexObserver?(imageIndex, imageUrl)
         }
     }

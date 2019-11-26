@@ -41,7 +41,7 @@ class AgeRangeCell: UITableViewCell {
             return .init(width: 80, height: 0)
         }
     }
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -54,7 +54,6 @@ class AgeRangeCell: UITableViewCell {
         overallStackView.spacing = spacing
         addSubview(overallStackView)
         overallStackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: spacing, left: spacing, bottom: spacing, right: spacing))
-        
     }
     
     required init?(coder: NSCoder) {

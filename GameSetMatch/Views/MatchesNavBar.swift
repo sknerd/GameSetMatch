@@ -8,8 +8,6 @@
 
 import LBTATools
 
-
-
 class MatchesNavBar: UIView {
     
     let backButton = UIButton(image: #imageLiteral(resourceName: "fire-1").withRenderingMode(.alwaysOriginal))
@@ -26,7 +24,7 @@ class MatchesNavBar: UIView {
         setupShadow(opacity: 0.2, radius: 8, offset: .init(width: 0, height: 10), color: .init(white: 0, alpha: 0.3))
         
         stack(iconImageView.withHeight(35),
-            hstack(messagesLabel, feedLabel, distribution: .fillEqually)).padTop(10)
+              hstack(messagesLabel, feedLabel, distribution: .fillEqually)).padTop(10)
         
         addSubview(backButton)
         backButton.anchor(top: safeAreaLayoutGuide.topAnchor, leading: leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 12, left: 8, bottom: 0, right: 0), size: .init(width: 38, height: 38))

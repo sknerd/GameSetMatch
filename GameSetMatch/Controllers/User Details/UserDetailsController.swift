@@ -51,7 +51,7 @@ class UserDetailsController: UIViewController, UIScrollViewDelegate {
     @objc fileprivate func handleDislike() {
         print("Disliking")
     }
-
+    
     fileprivate func createButton(image: UIImage, selector: Selector) -> UIButton {
         let button = UIButton(type: .system)
         button.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
@@ -62,7 +62,7 @@ class UserDetailsController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .white
         
         setupLayout()
@@ -126,8 +126,8 @@ class UserDetailsController: UIViewController, UIScrollViewDelegate {
         imageView.frame = CGRect(x: 0 , y: y , width: width, height: width)
         imageView.center.x = scrollView.center.x
         if y > 0 {
-           imageView.frame = CGRect(x: 0 , y: -y , width: width, height: width)
+            imageView.frame = CGRect(x: 0 , y: -y , width: width, height: width)
         }
     }
-  
+    
 }

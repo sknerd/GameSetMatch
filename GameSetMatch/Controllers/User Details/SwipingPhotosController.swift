@@ -46,7 +46,7 @@ class SwipingPhotosController: UIPageViewController, UIPageViewControllerDataSou
         } else {
             barsStackView.isHidden = true
         }
-
+        
         
         /* // include this for devices with the notch
          var paddingTop: CGFloat = 8
